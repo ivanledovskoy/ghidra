@@ -95,7 +95,10 @@
     rd = tmprs2;
 }
 
-:orn  rd, rs1, rs2 is op0006=0x33 & op1214=0x6 & op2531=0x20 & rd & rs1 & rs2 unimpl
+:orn  rd, rs1, rs2 is op0006=0x33 & op1214=0x6 & op2531=0x20 & rd & rs1 & rs2
+{
+    rd = rs1 | (~rs2);
+}
 
 :pack  rd, rs1, rs2 is op0006=0x33 & op1214=0x4 & op2531=0x4 & rd & rs1 & rs2 unimpl
 
