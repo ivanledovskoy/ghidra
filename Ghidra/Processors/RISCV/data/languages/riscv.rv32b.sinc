@@ -1,6 +1,9 @@
 # RV32 Bitmanip Extension
 
-:andn rd, rs1, rs2 is op0006=0x33 & op1214=0x7 & op2531=0x20 & rd & rs1 & rs2 unimpl
+:andn rd, rs1, rs2 is op0006=0x33 & op1214=0x7 & op2531=0x20 & rd & rs1 & rs2
+{
+    rd = rs1 & (~rs2);
+}
 
 :bdep rd, rs1, rs2 is op0006=0x33 & op1214=0x6 & op2531=0x24 & rd & rs1 & rs2 unimpl
 
