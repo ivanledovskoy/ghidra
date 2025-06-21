@@ -52,9 +52,23 @@
 #TODO  fix op2026
 :grevi rd, rs1, op2026 is op0006=0x13 & op1214=0x5 & op2731=0xd & op2026 & rd & rs1 unimpl
 
-:max  rd, rs1, rs2 is op0006=0x33 & op1214=0x6 & op2531=0x5 & rd & rs1 & rs2 unimpl
+:max  rd, rs1, rs2 is op0006=0x33 & op1214=0x6 & op2531=0x5 & rd & rs1 & rs2
+{
+    local tmprs1 = rs1;
+    local tmprs2 = rs2;
+    rd = tmprs1;
+    if (tmprs2 <= tmprs1) goto inst_next;
+    rd = tmprs2;
+}
 
-:maxu rd, rs1, rs2 is op0006=0x33 & op1214=0x7 & op2531=0x5 & rd & rs1 & rs2 unimpl
+:maxu rd, rs1, rs2 is op0006=0x33 & op1214=0x7 & op2531=0x5 & rd & rs1 & rs2
+{
+    local tmprs1 = rs1;
+    local tmprs2 = rs2;
+    rd = tmprs1;
+    if (tmprs2 <= tmprs1) goto inst_next;
+    rd = tmprs2;
+}
 
 :min  rd, rs1, rs2 is op0006=0x33 & op1214=0x4 & op2531=0x5 & rd & rs1 & rs2
 {
