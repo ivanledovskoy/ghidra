@@ -141,10 +141,18 @@
     rd = (rs1 >> index) & 1;
 }
 
-:sbinv  rd, rs1, rs2 is op0006=0x33 & op1214=0x1 & op2531=0x34 & rd & rs1 & rs2 unimpl
+:sbinv  rd, rs1, rs2 is op0006=0x33 & op1214=0x1 & op2531=0x34 & rd & rs1 & rs2
+{
+    local index:$(XLEN) = rs2;
+    rd = rs1 ^ (1 << index);
+}
 
 #TODO  fix op2026
-:sbinvi rd, rs1, op2026 is op0006=0x13 & op1214=0x1 & op2731=0xd & op2026 & rd & rs1 unimpl
+:sbinvi rd, rs1, op2026 is op0006=0x13 & op1214=0x1 & op2731=0xd & op2026 & rd & rs1
+{
+    local index:$(XLEN) = op2026;
+    rd = rs1 ^ (1 << index);
+}
 
 :sbset  rd, rs1, rs2 is op0006=0x33 & op1214=0x1 & op2531=0x14 & rd & rs1 & rs2 unimpl
 
