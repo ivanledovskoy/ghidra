@@ -115,10 +115,18 @@
 #TODO  fix op2026
 :rori rd, rs1, op2026 is op0006=0x13 & op1214=0x5 & op2731=0xc & op2026 & rd & rs1 unimpl
 
-:sbclr  rd, rs1, rs2 is op0006=0x33 & op1214=0x1 & op2531=0x24 & rd & rs1 & rs2 unimpl
+:sbclr  rd, rs1, rs2 is op0006=0x33 & op1214=0x1 & op2531=0x24 & rd & rs1 & rs2
+{
+    local index:$(XLEN) = rs2;
+    rd = rs1 & (~(1 << index));
+}
 
 #TODO  fix op2026
-:sbclri rd, rs1, op2026 is op0006=0x13 & op1214=0x1 & op2731=0x9 & op2026 & rd & rs1 unimpl
+:sbclri rd, rs1, op2026 is op0006=0x13 & op1214=0x1 & op2731=0x9 & op2026 & rd & rs1
+{
+    local index:$(XLEN) = op2026;
+    rd = rs1 & (~(1 << index));
+}
 
 :sbext  rd, rs1, rs2 is op0006=0x33 & op1214=0x5 & op2531=0x24 & rd & rs1 & rs2
 {
