@@ -56,7 +56,14 @@
 
 :maxu rd, rs1, rs2 is op0006=0x33 & op1214=0x7 & op2531=0x5 & rd & rs1 & rs2 unimpl
 
-:min  rd, rs1, rs2 is op0006=0x33 & op1214=0x4 & op2531=0x5 & rd & rs1 & rs2 unimpl
+:min  rd, rs1, rs2 is op0006=0x33 & op1214=0x4 & op2531=0x5 & rd & rs1 & rs2
+{
+    local tmprs1 = rs1;
+    local tmprs2 = rs2;
+    rd = tmprs1;
+    if (tmprs2 >= tmprs1) goto inst_next;
+    rd = tmprs2;
+}
 
 :minu rd, rs1, rs2 is op0006=0x33 & op1214=0x5 & op2531=0x5 & rd & rs1 & rs2 
 {
